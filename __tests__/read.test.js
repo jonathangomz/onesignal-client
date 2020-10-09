@@ -6,7 +6,7 @@ const onesignal = new OneSignal({
   authKey: process.env.AUTH_KEY,
   restApiKey: process.env.REST_API_KEY,
   appId: process.env.APP_ID,
-})
+});
 
 describe('App requests', () => {
 
