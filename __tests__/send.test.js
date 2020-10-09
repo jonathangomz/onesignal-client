@@ -2,6 +2,12 @@ require('dotenv').config();
 const supertest = require('supertest');
 const OneSignal = require('../lib/client');
 
+const onesignal = new OneSignal({
+  authKey: process.env.AUTH_KEY,
+  restApiKey: process.env.REST_API_KEY,
+  appId: process.env.APP_ID,
+});
+
 describe('Send Notifications requests', () => {
 
   test("Should throw an error for 'es' property missing", async () => {
