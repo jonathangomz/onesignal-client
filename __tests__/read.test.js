@@ -26,6 +26,20 @@ describe('Read Notification requests', () => {
     expect(body).toHaveProperty('limit', 5);
   });
 
+  test('Should throw an error for invalid string on options', async () => {
+    async function viewNotifications() {
+      let body;
+      try {
+        body = (await onesignal.viewNotifications({limit: 5, offset: 'This is a text'}));
+      } catch(err) {
+        throw err;
+      }
+      return body;
+    }
+    
+    await expect(viewNotifications()).rejects.toThrowError("\"offset\" must be a number");
+  });
+
   test('Should return the information of the last notifications', async () => {
     const notifications = (await onesignal.viewNotifications({limit: 1})).body;
     expect(notifications).toHaveProperty('notifications');
@@ -42,8 +56,9 @@ describe('Read Notification requests', () => {
       } catch(err) {
         throw err;
       }
+      return body;
     }
-    await expect(viewNotification()).rejects.toThrowError(new Error(`notification_id is required`));
+    await expect(viewNotification()).rejects.toThrowError(new Error("\"notification_id\" is required"));
   });
 
 });
