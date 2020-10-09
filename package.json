@@ -1,0 +1,20 @@
+{
+  "name": "@jonathangomz/onesignal-um-client",
+  "version": "0.0.2",
+  "description": "",
+  "main": "lib/client.js",
+  "scripts": {
+    "dev": "node lib/client.test.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^17.2.1",
+    "superagent": "^6.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
