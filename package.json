@@ -1,5 +1,5 @@
 {
-  "name": "@jonathangomz/onesignal-um-client",
+  "name": "@jonathangomz/onesignal-client",
   "version": "0.0.2",
   "description": "",
   "main": "lib/client.js",
