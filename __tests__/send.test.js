@@ -8,6 +8,12 @@ const onesignal = new OneSignal({
   appId: process.env.APP_ID,
 });
 
+function tomorrow() {
+  let result = new Date();
+  result.setDate(result.getDate() + 1);
+  return result;
+}
+
 describe('Send Notifications requests', () => {
 
   test("Should throw an error for 'es' property missing", async () => {
@@ -58,6 +64,31 @@ describe('Send Notifications requests', () => {
     expect(body).toHaveProperty('external_id');
     expect(body).toHaveProperty('recipients');
     expect(body.recipients).toBeGreaterThan(0);
+  });
+
+  test('Should schedule and cancel a notification', async () => {
+    const opt = {
+      headings: {
+        en: 'Example',
+        es: 'Ejemplo',
+      },
+      included_segments: [
+        'Test',
+      ],
+      send_after: tomorrow(),
+    };
+
+    const message = {
+      en: 'This is an example',
+      es: 'Este es un ejemplo',
+    }
+  
+    let body = (await onesignal.sendNotification(message, opt)).body;
+    expect(body).toHaveProperty('id');
+
+    body = (await onesignal.cancelNotification(body.id)).body;
+    expect(body).toHaveProperty('success', true);
+
   });
   
 });
