@@ -1,4 +1,4 @@
-# OneSignal (client)
+# OneSignal Client for Nodejs
 A OneSignal client that implement some of the endpoints from the OneSignal API
 
 ## Docs
