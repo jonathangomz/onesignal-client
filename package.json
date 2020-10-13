@@ -6,9 +6,19 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathangomz/onesignal-client.git"
+  },
+  "keywords": [
+    "onesignal",
+    "push notification",
+    "push",
+    "client"
+  ],
+  "author": "Jonathan Gómez",
   "license": "ISC",
+  "homepage": "https://github.com/jonathangomz/onesignal-client#readme",
   "dependencies": {
     "joi": "^17.2.1",
     "superagent": "^6.1.0"
