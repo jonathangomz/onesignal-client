@@ -63,5 +63,5 @@ https://documentation.onesignal.com/reference
 [1]:https://documentation.onesignal.com/reference/view-an-app
 [2]:https://documentation.onesignal.com/reference/create-notification
 [3]:https://documentation.onesignal.com/reference/cancel-notification
-[4]:https://documentation.onesignal.com/reference/view-notification
-[5]:https://documentation.onesignal.com/reference/view-notifications
+[4]:https://documentation.onesignal.com/reference/view-notifications
+[5]:https://documentation.onesignal.com/reference/view-notification
