@@ -16,7 +16,7 @@ View the details of a single OneSignal app.
 ```js
 client.getApp()
 ```
-[_See more._](1)
+[_See more._][1]
 ### `sendNotification(message options?)`
 Sends notifications to your users.
 ```js
@@ -37,25 +37,25 @@ const message = {
 
 client.sendNotification(message, opt);
 ```
-[_See more._](2)
+[_See more._][2]
 ### `cancelNotification(notification_id)`
 Stop a scheduled or currently outgoing notification.
 ```js
 client.cancelNotification('fd1723c6-bfaf-4f53-b4f4-0408ff43e18a');
 ```
-[_See more._](3)
+[_See more._][3]
 ### `viewNotifications(options?)`
 View the details of multiple notifications.
 ```js
 client.viewNotifications({ limit: 5 });
 ```
-[_See more._](4)
+[_See more._][4]
 ### `viewNotification(notification_id)`
 View the details of a single notification and outcomes associated with it.
 ```js
 client.viewNotification('fd1723c6-bfaf-4f53-b4f4-0408ff43e18a');
 ```
-[_See more._](5)
+[_See more._][5]
 
 **Ref:** \
 https://documentation.onesignal.com/reference
