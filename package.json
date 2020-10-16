@@ -1,7 +1,7 @@
 {
   "name": "@jonathangomz/onesignal-client",
-  "version": "0.1.3",
-  "description": "",
+  "version": "0.1.4",
+  "description": "OneSignal Client for Nodejs",
   "main": "lib/client.js",
   "scripts": {
     "test": "jest"
