@@ -15,6 +15,11 @@ describe('App requests', () => {
     expect(body).toHaveProperty('id', process.env.APP_ID);
   });
 
+  test('Should return true for key & app validation', async () => {
+    const isValid = await onesignal.isValid();
+    expect(isValid).toBe(true);
+  });
+
 });
 
 describe('Read Notification requests', () => {
