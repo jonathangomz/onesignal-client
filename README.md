@@ -11,6 +11,11 @@ const client = new OneSignal({
   appId: process.env.APP_ID,
 });
 ```
+### `isValid()`
+Validate that the app exist in the provider.
+```js
+client.isValid()
+```
 ### `getApp()`
 View the details of a single OneSignal app.
 ```js
