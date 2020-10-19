@@ -68,8 +68,8 @@ describe('Send Notifications requests', () => {
     };
   
     const message = {
-      en: 'This is an example',
-      es: 'Este es un ejemplo',
+      en: 'This is an example for tests devices',
+      es: 'Este es un ejemplo para los dispositivos de prueba',
     }
   
     const body = (await onesignal.sendNotification(message, opt)).body;
@@ -93,8 +93,8 @@ describe('Send Notifications requests', () => {
     };
 
     const message = {
-      en: 'This is an example',
-      es: 'Este es un ejemplo',
+      en: 'This is an example for tests devices',
+      es: 'Este es un ejemplo para los dispositivos de prueba',
     }
   
     let body = (await onesignal.sendNotification(message, opt)).body;
