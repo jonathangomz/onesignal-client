@@ -2,6 +2,8 @@
 A OneSignal client that implement some of the endpoints from the OneSignal API
 
 ## Docs
+**Note: The responses are the direct responses from the provider so you can see the examples on his documentation ([See ref](#ref)).**
+
 ### `constructor({ authKey, restApiKey, appId })`
 Creates a new OneSignal client.
 ```js
@@ -11,19 +13,27 @@ const client = new OneSignal({
   appId: process.env.APP_ID,
 });
 ```
-### `isValid()`
+### `isValid(): Promise<boolean | Error>`
 Validate that the app exist in the provider.
 ```js
 client.isValid()
 ```
-### `getApp()`
+### `getApp(): Promise<Response>`
 View the details of a single OneSignal app.
+
+[_See more_][1]
+
+**Usage example:**
 ```js
 client.getApp()
 ```
-[_See more._][1]
-### `sendNotification(message options?)`
-Sends notifications to your users.
+### `sendNotification(message, options?): Promise<Response>`
+Sends notifications to your users. \
+_If attribute `included_segments` not provided will send to "Test" segment by default_.
+
+[_See more_][2]
+
+**Usage example:**
 ```js
 const opt = {
   headings: {
@@ -42,27 +52,35 @@ const message = {
 
 client.sendNotification(message, opt);
 ```
-[_See more._][2]
-### `cancelNotification(notification_id)`
+### `cancelNotification(notification_id): Promise<Response>`
 Stop a scheduled or currently outgoing notification.
+
+[_See more_][3]
+
+**Usage example:**
 ```js
 client.cancelNotification('fd1723c6-bfaf-4f53-b4f4-0408ff43e18a');
 ```
-[_See more._][3]
-### `viewNotifications(options?)`
+### `viewNotifications(options?): Promise<Response>`
 View the details of multiple notifications.
+
+[_See more_][4]
+
+**Usage example:**
 ```js
 client.viewNotifications({ limit: 5 });
 ```
-[_See more._][4]
-### `viewNotification(notification_id)`
+### `viewNotification(notification_id): Promise<Response>`
 View the details of a single notification and outcomes associated with it.
+
+[_See more_][5]
+
+**Usage example:**
 ```js
 client.viewNotification('fd1723c6-bfaf-4f53-b4f4-0408ff43e18a');
 ```
-[_See more._][5]
 
-**Ref:** \
+## Ref:
 https://documentation.onesignal.com/reference
 
 [1]:https://documentation.onesignal.com/reference/view-an-app
