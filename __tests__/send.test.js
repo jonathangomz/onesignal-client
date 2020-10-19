@@ -41,6 +41,20 @@ describe('Send Notifications requests', () => {
 
     await expect(sendNotification()).rejects.toThrowError("\"es\" is required");
   });
+  
+  test('Should send a notification for all - Default options', async () => {
+    const message = {
+      en: 'This is an example for default segment',
+      es: 'Este es un ejemplo para el segmento por default',
+    }
+  
+    const body = (await onesignal.sendNotification(message)).body;
+
+    expect(body).toHaveProperty('id');
+    expect(body).toHaveProperty('external_id');
+    expect(body).toHaveProperty('recipients');
+    expect(body.recipients).toBeGreaterThan(0);
+  });
 
   test('Should send a test notification and return his sended', async () => {
     const opt = {
