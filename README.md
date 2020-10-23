@@ -35,19 +35,24 @@ _If attribute `included_segments` not provided will send to "Test" segment by de
 
 **Usage example:**
 ```js
-const opt = {
-  headings: {
-    en: 'Example',
-    es: 'Ejemplo',
-  },
-  included_segments: [
-    'Test',
-  ]
-};
-
 const message = {
-  en: 'This is an example',
-  es: 'Este es un ejemplo',
+  heading: {
+    en: 'Example Explicit Segment',
+    es: 'Ejemplo Segmento Explicito',
+  },
+  content: {
+    en: 'This is an example for Test segment explicitly',
+    es: 'Este es un ejemplo para el segmento Test de forma explícita',
+  }
+}
+
+const opt = {
+  targets: {
+    to: {
+      type: 'external',
+      value: ['1130745'],
+    }
+  }
 }
 
 client.sendNotification(message, opt);
