@@ -101,7 +101,7 @@ describe('Send Notifications requests', () => {
     const opt = {
       targets: {
         to: {
-          type: 'external',
+          type: 'externals',
           value: ['1130745'],
         }
       }
