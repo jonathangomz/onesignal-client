@@ -66,4 +66,39 @@ describe('Read Notification requests', () => {
     await expect(viewNotification()).rejects.toThrowError(new Error("\"notification_id\" is required"));
   });
 
+  test('Should return the devices', async () => {
+    const { body } = await onesignal.viewDevices({limit: 2});
+    expect(body).toHaveProperty('players');
+    expect(Array.isArray(body.players)).toBe(true);
+  });
+
+  test('Should throw an error for invalid limit', async () => {
+    const viewDevices = async () => {
+      try {
+        const { body } = await onesignal.viewDevices({ limit: "aasd" });
+        return body;
+      } catch(err) {
+        throw new Error(err.details[0].message);
+      }
+    }
+    await expect(viewDevices()).rejects.toThrowError("\"limit\" must be a number");
+  });
+
+  test('Should return the device', async () => {
+    const { status, body } = await onesignal.viewDevice('107a32d0-371e-4aff-a5bf-65991e3dd47b');
+    expect(body).toHaveProperty('identifier');
+    expect(status).toBe(200);
+  });
+
+  test('Should throw an error for invalid player id', async () => {
+    const viewDevice = async () => {
+      try {
+        const { body } = await onesignal.viewDevice(123123);
+        return body;
+      } catch(err) {
+        throw err;
+      }
+    }
+    await expect(viewDevice()).rejects.toThrowError("\"player_id\" is required");
+  });
 });
