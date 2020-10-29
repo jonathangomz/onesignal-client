@@ -84,6 +84,24 @@ View the details of a single notification and outcomes associated with it.
 ```js
 client.viewNotification('fd1723c6-bfaf-4f53-b4f4-0408ff43e18a');
 ```
+### `viewDevices(options?): Promise<Response>`
+View the details of multiple devices in your app.
+
+[_See more_][6]
+
+**Usage example:**
+```js
+client.viewDevices({ limit: 2 });
+```
+### `viewDevice(player_id): Promise<Response>`
+View the details of an existing device in your OneSignal apps.
+
+[_See more_][7]
+
+**Usage example:**
+```js
+client.viewDevice('fd1723c6-bfaf-4f53-b4f4-0408ff43e18a');
+```
 
 ## Ref:
 https://documentation.onesignal.com/reference
@@ -93,3 +111,5 @@ https://documentation.onesignal.com/reference
 [3]:https://documentation.onesignal.com/reference/cancel-notification
 [4]:https://documentation.onesignal.com/reference/view-notifications
 [5]:https://documentation.onesignal.com/reference/view-notification
+[6]:https://documentation.onesignal.com/reference/view-devices
+[7]:https://documentation.onesignal.com/reference/view-device
