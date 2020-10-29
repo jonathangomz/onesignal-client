@@ -66,8 +66,14 @@ describe('Read Notification requests', () => {
     await expect(viewNotification()).rejects.toThrowError(new Error("\"notification_id\" is required"));
   });
 
-  test('Should return the devices', async () => {
+  test('Should return two devices', async () => {
     const { body } = await onesignal.viewDevices({limit: 2});
+    expect(body).toHaveProperty('players');
+    expect(Array.isArray(body.players)).toBe(true);
+  });
+
+  test('Should return all (max 300) the devices', async () => {
+    const { body } = await onesignal.viewDevices();
     expect(body).toHaveProperty('players');
     expect(Array.isArray(body.players)).toBe(true);
   });
