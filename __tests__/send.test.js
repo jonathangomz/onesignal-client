@@ -15,29 +15,6 @@ function tomorrow() {
 }
 
 describe('Send Notifications requests', () => {
-
-  test("Should throw an error for 'es' property missing", async () => {  
-    const message = {
-      heading: {
-        en: 'Example',
-      },
-      content: {
-        en: 'This is an example',
-        es: 'Este es un ejemplo',
-      }
-    }
-  
-    async function sendNotification() {
-      let body;
-      try {
-        body = (await onesignal.sendNotification(message)).body;
-      } catch(err) {
-        throw new Error(err.details[0].message);
-      }
-    }
-
-    await expect(sendNotification()).rejects.toThrowError("\"heading.es\" is required");
-  });
   
   test('Should send a notification for Test - Default options', async () => {
     const message = {
@@ -127,15 +104,67 @@ describe('Send Notifications requests', () => {
       }
     }
 
-    const extra = {
-      send_after: tomorrow(),
+    const opt = {
+      extra: {
+        send_after: tomorrow(),
+      }
     };
     
-    let body = (await onesignal.sendNotification(message, { extra })).body;
+    let body = (await onesignal.sendNotification(message, opt)).body;
     expect(body).toHaveProperty('id');
 
     body = (await onesignal.cancelNotification(body.id)).body;
     expect(body).toHaveProperty('success', true);
+  });
+
+  test("Should throw an error for 'es' property missing", async () => {  
+    const message = {
+      heading: {
+        en: 'Example',
+      },
+      content: {
+        en: 'This is an example',
+        es: 'Este es un ejemplo',
+      }
+    }
+  
+    async function sendNotification() {
+      let body;
+      try {
+        body = (await onesignal.sendNotification(message)).body;
+      } catch(err) {
+        throw new Error(err.details[0].message);
+      }
+    }
+
+    await expect(sendNotification()).rejects.toThrowError("\"heading.es\" is required");
+  });
+
+  test('Should throw an error on notification already delivered', async () => {
+    const message = {
+      heading: {
+        en: 'Example Error Cancelling Notification',
+        es: 'Ejemplo Error Cancelando Notificación ',
+      },
+      content: {
+        en: 'This is an test for throwing an error cancelling notifications',
+        es: 'Esta es una prueba para obtener error cancelando notificationes',
+      }
+    }
+    
+    let body = (await onesignal.sendNotification(message)).body;
+    expect(body).toHaveProperty('id');
+
+    await (function timeout(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    })(2000);
+
+    try {
+      let response = (await onesignal.cancelNotification(body.id));
+      expect(response.body).toHaveProperty('success', true);
+    } catch (error) {
+      expect(error.response.status).toBe(400);
+    }
   });
   
 });
